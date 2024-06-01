@@ -40,10 +40,10 @@ const NavLinks = ({ isBigSidebar }) => {
         const { role } = user;
 
         if (path !== "all-drugs" && isVisitor) return;
-        if (path === "admin" && role !== "owner") return;
+        if (path === "admin" && role !== "admin") return;
         else if (path === "stats" && role === "user") {
           return;
-        } else if (path === "add-user" && role !== "owner") {
+        } else if (path === "add-user" && role !== "admin") {
           return;
         } else if (path === "." && role !== "user") {
           return;

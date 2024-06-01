@@ -13,7 +13,6 @@ import {
   validateUpdateUserInput,
 } from "../middleware/validationMiddlware.js";
 import {
-  authorizeOwner,
   authorizeUser,
   checkForTestUser,
 } from "../middleware/authMiddleware.js";
@@ -21,14 +20,14 @@ import upload from "../middleware/multerMiddleware.js";
 const router = Router();
 
 router.get("/current-user", getCurrentUser);
-router.get("/admin/app-stats", authorizeOwner, getUsers);
+router.get("/admin/app-stats", authorizeUser, getUsers);
 router.get("/admin/app-stats/:id", authorizeUser, getSingleUser);
-router.patch("/admin/app-stats/:id", authorizeOwner, editUser);
-router.delete("/admin/app-stats/:id", authorizeOwner, deleteUser);
+router.patch("/admin/app-stats/:id", authorizeUser, editUser);
+router.delete("/admin/app-stats/:id", authorizeUser, deleteUser);
 router.post(
   "/admin/app-stats",
   validateRegisterInput,
-  authorizeOwner,
+  authorizeUser,
   createUser
 );
 router.patch(

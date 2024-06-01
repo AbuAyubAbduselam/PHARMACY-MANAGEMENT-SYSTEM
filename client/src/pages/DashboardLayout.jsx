@@ -3,6 +3,7 @@ import { BigSidebar, Navbar, SmallSidebar } from "../components";
 import { useNavigation } from "react-router-dom";
 import { Loading } from "../components";
 import { createContext, useContext, useState } from "react";
+import background from "../assets/images/b14.jpg";
 import {
   Navigate,
   Outlet,
@@ -50,6 +51,13 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
     toast.success("Logout Successfully");
   };
 
+  const backgroundStyle = {
+    backgroundImage: `url(${background})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+  };
+
   return (
     <DashboardContext.Provider
       value={{
@@ -62,7 +70,7 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
       }}
     >
       <Wrapper>
-        <main className="dashboard">
+        <main className="dashboard" style={backgroundStyle}>
           <SmallSidebar />
           <BigSidebar />
           <div>

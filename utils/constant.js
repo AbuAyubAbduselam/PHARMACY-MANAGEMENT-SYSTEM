@@ -19,5 +19,4 @@ export const DRUG_SORT_BY = {
 export const ROLE = {
   PHARMACIST: "user",
   ADMIN: "admin",
-  OWNER: "owner",
 };

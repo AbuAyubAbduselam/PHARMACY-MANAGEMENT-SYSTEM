@@ -162,8 +162,7 @@ const App = () => {
     backgroundImage: `url(${background})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    minHeight: "100vh", // 100% of the viewport height
-    /* You can add more inline styles as needed */
+    minHeight: "100vh",
   };
 
   return (

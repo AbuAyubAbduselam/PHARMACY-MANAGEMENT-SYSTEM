@@ -12,7 +12,7 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const getUsers = async (req, res) => {
-  const users = await User.find({ role: { $ne: "owner" } });
+  const users = await User.find({ role: { $ne: "admin" } });
   console.log(users);
 
   res.status(StatusCodes.OK).json({ users });

@@ -101,8 +101,7 @@ export const validateIdParam = withValidationErrors([
     const drug = await Drug.findById(value);
     if (!drug) throw new NotFoundError(`no drug with id : ${value}`);
     const isAdmin = req.user.role === "admin";
-    const isOwner = req.user.userId === drug.createdBy.toString();
-    if (!isAdmin && !isOwner)
+    if (!isAdmin)
       throw new UnauthorizedError("Not authorized to access this route");
   }),
 ]);

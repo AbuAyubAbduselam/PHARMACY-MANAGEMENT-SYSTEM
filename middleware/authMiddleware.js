@@ -35,16 +35,10 @@ export const authorizeUser = (req, res, next) => {
   console.log(req.user.role);
 
   const isAdmin = req.user.role === "admin";
-  const isOwner = req.user.role === "owner";
-  if (!isAdmin || !isOwner)
-    throw new UnauthorizedError("Not authorized to access this route");
 
-  next();
-};
-export const authorizeOwner = (req, res, next) => {
-  const isOwner = req.user.role === "owner";
-  if (!isOwner)
+  if (!isAdmin) {
     throw new UnauthorizedError("Not authorized to access this route");
+  }
 
   next();
 };
