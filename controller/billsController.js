@@ -140,7 +140,7 @@ export const updateBill = async (req, res) => {
   const weight = drug.weight;
   const drugName = drug.drugName;
 
-  const totalPrice = drug.price * quantity;
+  const totalPrice = drug.price * quantity * 0.15;
 
   const billDetail = {
     totalPrice,
