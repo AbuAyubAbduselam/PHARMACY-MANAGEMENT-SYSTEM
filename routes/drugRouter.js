@@ -38,7 +38,13 @@ router.route("/expired-drugs").get(checkForTestUser, getExpiredDrugs);
 router
   .route("/:id")
   .get(validateIdParam, getSingleDrug)
-  .patch(checkForTestUser, validateIdParam, validateDrugInput, updateDrug)
-  .delete(checkForTestUser, validateIdParam, deleteDrug);
+  .patch(
+    checkForTestUser,
+    validateIdParam,
+    authorizeAdmin,
+    validateDrugInput,
+    updateDrug
+  )
+  .delete(checkForTestUser, validateIdParam, authorizeAdmin, deleteDrug);
 
 export default router;

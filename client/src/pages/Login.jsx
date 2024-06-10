@@ -48,6 +48,9 @@ const Login = () => {
           />
         )}
         <SubmitBtn />
+        <div className="text-center mt-5 text-blue-600">
+          <Link to="/">Back to home</Link>
+        </div>
       </Form>
     </Wrapper>
   );

@@ -31,7 +31,16 @@ const AddUser = () => {
         <div className="form-center">
           <FormRow type="text" name="name" labelText="first name" />
           <FormRow type="text" labelText="last name" name="lastName" />
-          <FormRow type="tel" labelText="phone number" name="phone" />
+          <div className="phone-cont">
+            <div className="def-starter">+251</div>
+            <FormRow
+              type="tel"
+              labelText="phone number"
+              name="phone"
+              maxLength={9}
+              style={{ paddingLeft: "2.6rem" }}
+            />
+          </div>
           <FormRow type="password" labelText="password" name="password" />
           <FormRow type="email" labelText="email" name="email" />
           <FormRowSelect

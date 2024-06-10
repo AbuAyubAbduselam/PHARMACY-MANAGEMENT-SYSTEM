@@ -69,6 +69,10 @@ export const createBill = async (req, res) => {
   if (drug.quantity < quantity) {
     throw new Insufficient("Insufficient amount of drug");
   }
+  const currentDate = new Date();
+  if (new Date(drug.expiryDate) <= currentDate) {
+    throw new Error("The drug is expired");
+  }
 
   const unitPrice = drug.price;
   drug.quantity -= quantity;
@@ -78,7 +82,7 @@ export const createBill = async (req, res) => {
   await drug.save();
   console.log(unitPrice);
 
-  const totalPrice = drug.price * quantity;
+  const totalPrice = drug.price * quantity * 0.15;
 
   const billDetail = {
     totalPrice,
@@ -171,13 +175,17 @@ import dayjs from "dayjs";
 
 export const showStats = async (req, res) => {
   try {
-    const today = dayjs().format("DD MMM YYYY");
+    const today = dayjs();
+    const threeMonthsAgo = today.subtract(3, "month").startOf("day").toDate();
 
-    const totalBills = await Bill.countDocuments([
-      { $match: { createdAt: { $gte: today } } },
-    ]);
+    const totalBills = await Bill.countDocuments({
+      createdAt: { $gte: threeMonthsAgo },
+    });
 
     let dailySales = await Bill.aggregate([
+      {
+        $match: { createdAt: { $gte: threeMonthsAgo } },
+      },
       {
         $group: {
           _id: {
@@ -188,9 +196,7 @@ export const showStats = async (req, res) => {
           total: { $sum: "$totalPrice" },
         },
       },
-
       { $sort: { "_id.year": -1, "_id.month": -1, "_id.day": -1 } },
-      { $limit: 30 },
     ]);
 
     dailySales = dailySales
@@ -211,15 +217,17 @@ export const showStats = async (req, res) => {
 
     const totalSales = await Bill.aggregate([
       {
+        $match: { createdAt: { $gte: threeMonthsAgo } },
+      },
+      {
         $group: {
           _id: null,
           total: { $sum: "$totalPrice" },
         },
       },
     ]);
-    let totalBirr = totalSales[0].total;
 
-    console.log(totalSales);
+    let totalBirr = totalSales[0]?.total || 0;
 
     res.status(StatusCodes.OK).json({ totalBills, totalBirr, dailySales });
   } catch (error) {

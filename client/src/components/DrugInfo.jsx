@@ -39,7 +39,7 @@ const DrugInfo = ({
       <div className="drug-data">
         <div className="clmn-1">
           {!isVisitor && (
-            <div className="flex flex-row gap-2">
+            <div className="idd flex flex-row gap-2">
               <div>
                 Product Id: <span className="drug-id  font-Poppins">{_id}</span>
               </div>

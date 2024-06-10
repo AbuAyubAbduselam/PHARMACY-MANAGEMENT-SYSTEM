@@ -33,13 +33,14 @@ const Drug = ({
 
   const { user } = useDashboardContext();
   let isVisitor = user._id === "665444905b50510f3255a969";
+  let isAdmin = user.role === "admin";
 
   return (
     <Wrapper>
       <div className="info">
         <DrugInfo key={drugData._id} {...drugData} />
 
-        {!isVisitor && (
+        {!(isAdmin || isVisitor) && (
           <div className="action-btn">
             <Link to={`../edit-drug/${drugData._id}`} className="btn edit-btn">
               edit

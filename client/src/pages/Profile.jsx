@@ -53,7 +53,7 @@ const Profile = () => {
             defaultValue={lastName}
           />
           <FormRow type="email" name="email" defaultValue={email} />
-          <FormRow type="tel" name="phone" defaultValue={phone} />
+          <FormRow type="tel" name="phone" maxLength={9} defaultValue={phone} />
           <SubmitBtn />
         </div>
       </Form>

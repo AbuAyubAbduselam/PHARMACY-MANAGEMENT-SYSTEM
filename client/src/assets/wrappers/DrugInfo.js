@@ -9,9 +9,10 @@ const Wrapper = styled.div`
     text-transform: capitalize;
     letter-spacing: var(--letter-spacing);
     display: flex;
+    width: 80%;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
     font-weight: bold;
   }
 
@@ -25,19 +26,21 @@ const Wrapper = styled.div`
   .clmn-1 {
     display: flex;
     flex-direction: column;
-    width: 80%;
     gap: 3rem;
   }
   .clmn-2 {
     display: flex;
     flex-direction: column;
-    width: 80%;
     gap: 3rem;
   }
+
   .status {
     padding: 0.3rem 1rem;
     border-radius: 0.9rem;
     background-color: #4ccd99;
+  }
+  .idd {
+    width: 400px;
   }
 
   .drug-id {

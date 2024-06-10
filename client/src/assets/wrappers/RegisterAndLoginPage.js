@@ -29,7 +29,7 @@ const Wrapper = styled.section`
   .eye-icon {
     position: absolute;
     right: 2.7rem;
-    bottom: 6rem;
+    bottom: 8.2rem;
     cursor: pointer;
   }
   .member-btn {

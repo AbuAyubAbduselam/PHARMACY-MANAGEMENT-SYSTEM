@@ -30,9 +30,12 @@ const Wrapper = styled.section`
     display: grid;
     place-items: center;
   }
+  .phone-cont {
+    position: relative;
+  }
   .def-starter {
     position: absolute;
-    top: 14.5rem;
+    top: 2.7rem;
     margin-left: 5px;
     font-weight: 100;
   }

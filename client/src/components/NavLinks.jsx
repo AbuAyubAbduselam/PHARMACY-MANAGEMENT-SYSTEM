@@ -12,11 +12,7 @@ const NavLinks = ({ isBigSidebar }) => {
   const links = [
     { text: "add medicine", path: ".", icon: <FaWpforms /> },
     { text: "all medicine", path: "all-drugs", icon: <MdQueryStats /> },
-    {
-      text: "Expired Medicine",
-      path: "expired-drugs",
-      icon: <BiErrorCircle />,
-    },
+
     {
       text: "generate bill",
       path: "add-bill",

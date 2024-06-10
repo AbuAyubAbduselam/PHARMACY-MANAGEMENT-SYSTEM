@@ -85,13 +85,40 @@ export const validateBillInput = withValidationErrors([
   body("patientPhone")
     .notEmpty()
     .withMessage("Phone number is required")
-    .matches(/^\d{9}$/)
-    .withMessage("Phone number must be valid"),
+    .matches(/^9\d{8}$/)
+    .withMessage("Phone number must be exactly 9 digits long and start with 9"),
   body("quantity")
     .notEmpty()
     .withMessage("Quantity is required")
     .isInt({ min: 1 })
     .withMessage("Quantity must be a positive integer greater than 0"),
+]);
+
+export const validateUserInput = withValidationErrors([
+  body("name").notEmpty().withMessage("first name is required"),
+  body("email")
+    .notEmpty()
+    .withMessage("email is required")
+    .isEmail()
+    .withMessage("invalid email format")
+    .custom(async (email) => {
+      const user = await User.findOne({ email });
+      if (user) {
+        throw new BadRequestError("email already exists");
+      }
+    }),
+
+  body("password")
+    .notEmpty()
+    .withMessage("password is required")
+    .isLength({ min: 8 })
+    .withMessage("The pasword character must be greater than 8"),
+  body("lastName").notEmpty().withMessage("last name is required"),
+  body("phone")
+    .notEmpty()
+    .withMessage("phone is required")
+    .matches(/^9\d{8}$/)
+    .withMessage("Phone number must be exactly 9 digits long and start with 9"),
 ]);
 
 export const validateIdParam = withValidationErrors([
@@ -136,8 +163,11 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage("password is required")
     .isLength({ min: 8 })
     .withMessage("The pasword character must be greater than 8"),
-  body("lastName").notEmpty().withMessage("lastName is required"),
-  body("phone").notEmpty().withMessage("phone is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("lastName is required")
+    .matches(/^9\d{8}$/)
+    .withMessage("Phone number must be exactly 9 digits long and start with 9"),
 ]);
 
 export const validateUserLoginInput = withValidationErrors([
@@ -184,6 +214,9 @@ export const validateUpdateUserInput = withValidationErrors([
         throw new Error("email already exists");
       }
     }),
-  body("lastName").notEmpty().withMessage("last name is required"),
-  body("phone").notEmpty().withMessage("phone is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .matches(/^9\d{8}$/)
+    .withMessage("Phone number must be exactly 9 digits long and start with 9"),
 ]);

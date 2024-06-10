@@ -10,6 +10,7 @@ import { useRef } from "react";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import BillInfo from "./BillInfo";
 import ReactToPrint from "react-to-print";
+import { useDashboardContext } from "../pages/DashboardLayout";
 day.extend(advancedFormat);
 
 const Bill = ({
@@ -48,28 +49,43 @@ const Bill = ({
     patientPhone,
     customerName,
   };
+  const { user } = useDashboardContext();
+  let isAdmin = user.role === "admin";
+  let isUser = user.role === "user";
+
   return (
     <Wrapper ref={printRef}>
       <div className="info">
         <BillInfo key={billData._id} {...billData} />
 
         <div className="action-btn no-print">
-          <Link to={`../edit-bill/${billData._id}`} className="btn edit-btn">
-            <CiEdit size={20} />
-          </Link>
-          <Form method="post" action={`../delete-bill/${_id}`}>
-            <button type="submit" className="btn delete-btn">
-              <MdDelete size={20} />
-            </button>
-          </Form>
-          <ReactToPrint
-            trigger={() => (
-              <button type="button" className="btn print-btn">
-                <MdPrint size={20} />
-              </button>
-            )}
-            content={() => printRef.current}
-          />
+          {!isUser && (
+            <>
+              {" "}
+              <Link
+                to={`../edit-bill/${billData._id}`}
+                className="btn edit-btn"
+              >
+                <CiEdit size={20} />
+              </Link>
+              <Form method="post" action={`../delete-bill/${_id}`}>
+                <button type="submit" className="btn delete-btn">
+                  <MdDelete size={20} />
+                </button>
+              </Form>
+            </>
+          )}
+
+          {!isAdmin && (
+            <ReactToPrint
+              trigger={() => (
+                <button type="button" className="btn print-btn">
+                  <MdPrint size={20} />
+                </button>
+              )}
+              content={() => printRef.current}
+            />
+          )}
         </div>
       </div>
     </Wrapper>
