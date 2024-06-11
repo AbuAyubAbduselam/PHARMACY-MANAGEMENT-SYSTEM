@@ -44,7 +44,15 @@ const isFutureDate = (value) => {
 };
 
 export const validateDrugInput = withValidationErrors([
-  body("drugName").notEmpty().withMessage("medicine name is required"),
+  body("drugName")
+    .notEmpty()
+    .withMessage("medicine name is required")
+    .custom(async (drugName) => {
+      const drugExists = await Drug.findOne({ drugName });
+      if (drugExists) {
+        throw new Error("Drug already exists in the stock, update it!");
+      }
+    }),
   body("quantity")
     .notEmpty()
     .withMessage("Quantity is required")
@@ -127,9 +135,6 @@ export const validateIdParam = withValidationErrors([
     if (!isValidId) throw new BadRequestError("invalid MongoDB id");
     const drug = await Drug.findById(value);
     if (!drug) throw new NotFoundError(`no drug with id : ${value}`);
-    const isAdmin = req.user.role === "admin";
-    if (!isAdmin)
-      throw new UnauthorizedError("Not authorized to access this route");
   }),
 ]);
 export const validateBillIdParam = withValidationErrors([
@@ -214,9 +219,10 @@ export const validateUpdateUserInput = withValidationErrors([
         throw new Error("email already exists");
       }
     }),
-  body("lastName")
+  body("lastName").notEmpty().withMessage("last name is required"),
+  body("phone")
     .notEmpty()
-    .withMessage("last name is required")
+    .withMessage("phone number is required")
     .matches(/^9\d{8}$/)
     .withMessage("Phone number must be exactly 9 digits long and start with 9"),
 ]);

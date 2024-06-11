@@ -6,6 +6,8 @@ import day from "dayjs";
 
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { useDashboardContext } from "../pages/DashboardLayout";
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
 day.extend(advancedFormat);
 
 const Drug = ({
@@ -43,11 +45,11 @@ const Drug = ({
         {!(isAdmin || isVisitor) && (
           <div className="action-btn">
             <Link to={`../edit-drug/${drugData._id}`} className="btn edit-btn">
-              edit
+              <CiEdit size={20} />
             </Link>
             <Form method="post" action={`../delete-drug/${_id}`}>
               <button type="submit" className="btn delete-btn">
-                delete
+                <MdDelete size={20} />
               </button>
             </Form>
           </div>

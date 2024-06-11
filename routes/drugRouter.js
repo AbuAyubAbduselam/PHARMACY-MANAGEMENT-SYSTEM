@@ -27,12 +27,6 @@ router.post(
   createDrug
 );
 
-/* router
-  .route("/all-jobs")
-  .get(getAllJobs)
-  .get(getExpiredDrugs)
-  .post(checkForTestUser, validateJobInput, createJob); */
-
 router.route("/expired-drugs").get(checkForTestUser, getExpiredDrugs);
 
 router
@@ -45,6 +39,6 @@ router
     validateDrugInput,
     updateDrug
   )
-  .delete(checkForTestUser, validateIdParam, authorizeAdmin, deleteDrug);
+  .delete(checkForTestUser, validateIdParam, deleteDrug);
 
 export default router;

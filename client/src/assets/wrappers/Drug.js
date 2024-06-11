@@ -49,8 +49,9 @@ const Wrapper = styled.article`
 
   .edit-btn,
   .delete-btn {
-    width: 5rem;
-    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
