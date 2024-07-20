@@ -42,8 +42,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static(path.resolve(__dirname, "./public")));
 
-cron.schedule("0 0 * * *", updateExpiredDrugsStatus);
-
 app.use("/api/v1/drugs", authenticateUser, drugRouter);
 app.use("/api/v1/bills", authenticateUser, billRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
@@ -68,5 +66,6 @@ try {
   });
 } catch (error) {
   console.log(error);
+  console.log(11111);
   process.exit(1);
 }

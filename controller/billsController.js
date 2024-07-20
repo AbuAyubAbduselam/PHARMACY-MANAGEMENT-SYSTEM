@@ -82,7 +82,8 @@ export const createBill = async (req, res) => {
   await drug.save();
   console.log(unitPrice);
 
-  const totalPrice = drug.price * quantity * 0.15;
+  const totalPrice1 = drug.price * quantity;
+  const totalPrice = totalPrice1 + totalPrice1 * 0.15;
 
   const billDetail = {
     totalPrice,
@@ -140,7 +141,8 @@ export const updateBill = async (req, res) => {
   const weight = drug.weight;
   const drugName = drug.drugName;
 
-  const totalPrice = drug.price * quantity * 0.15;
+  const totalPrice1 = drug.price * quantity;
+  const totalPrice = totalPrice1 + totalPrice1 * 0.15;
 
   const billDetail = {
     totalPrice,

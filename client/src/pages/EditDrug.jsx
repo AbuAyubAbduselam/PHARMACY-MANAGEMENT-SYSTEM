@@ -78,6 +78,17 @@ const EditDrug = () => {
             defaultValue={drug.supplier}
             list={Object.values(SUPPLIER)}
           />
+          <div className="flex flex-col gap-2">
+            <label htmlFor="description" className="">
+              Description
+            </label>
+            <textarea
+              className="bg-[var(--background-color)] rounded-md p-2"
+              name="description"
+              defaultValue={drug.description}
+              rows="6"
+            ></textarea>
+          </div>
           <SubmitBtn formBtn />
         </div>
       </Form>

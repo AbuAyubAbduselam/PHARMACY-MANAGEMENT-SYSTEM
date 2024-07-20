@@ -7,7 +7,8 @@ import { useDashboardContext } from "../pages/DashboardLayout";
 const DrugsContainer = () => {
   const { data } = useAllDrugsContext();
   const { user } = useDashboardContext();
-  const { drugs, totalDrugs, numOfPages } = data;
+  const { drugs, totalDrugs, numOfPages, totalAvailableDrugs, numOfPages2 } =
+    data;
 
   let isVisitor = user._id === "665444905b50510f3255a969";
 
@@ -22,11 +23,17 @@ const DrugsContainer = () => {
   return (
     <>
       <Wrapper>
-        {!isVisitor && (
-          <h5>
-            {totalDrugs} {totalDrugs > 1 ? "drugs" : "drug"} found
-          </h5>
-        )}
+        <h5>
+          {isVisitor ? totalAvailableDrugs : totalDrugs}{" "}
+          {isVisitor
+            ? totalAvailableDrugs > 1
+              ? "drugs "
+              : "drug "
+            : totalDrugs > 1
+            ? "drugs "
+            : "drug "}
+          found
+        </h5>
 
         <div className="drugs">
           {drugs.map((drug) => {
@@ -35,7 +42,9 @@ const DrugsContainer = () => {
             return <Drug key={drug._id} {...drug} />;
           })}
         </div>
-        {numOfPages > 1 && <PageBtnContainer />}
+        {isVisitor
+          ? numOfPages2 > 1 && <PageBtnContainer />
+          : numOfPages > 1 && <PageBtnContainer />}
       </Wrapper>
     </>
   );

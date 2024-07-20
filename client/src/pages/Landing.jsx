@@ -19,7 +19,7 @@ const Landing = () => {
     };
     try {
       await customFetch.post("/auth/login/test", data);
-      toast.success("take a test drive");
+      toast.success("take a visit drive");
       navigate("/dashboard/all-drugs");
     } catch (error) {
       toast.error(error?.response?.data?.msg);

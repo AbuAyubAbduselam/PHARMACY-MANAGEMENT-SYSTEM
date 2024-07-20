@@ -103,7 +103,11 @@ export const validateBillInput = withValidationErrors([
 ]);
 
 export const validateUserInput = withValidationErrors([
-  body("name").notEmpty().withMessage("first name is required"),
+  body("name")
+    .notEmpty()
+    .withMessage("first name is required")
+    .matches(/^[\p{L}\s]+$/u)
+    .withMessage("Pharmacist name must contain only letters"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -121,7 +125,11 @@ export const validateUserInput = withValidationErrors([
     .withMessage("password is required")
     .isLength({ min: 8 })
     .withMessage("The pasword character must be greater than 8"),
-  body("lastName").notEmpty().withMessage("last name is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .matches(/^[\p{L}\s]+$/u)
+    .withMessage("last name must contain only letters"),
   body("phone")
     .notEmpty()
     .withMessage("phone is required")
@@ -150,7 +158,11 @@ export const validateBillIdParam = withValidationErrors([
 ]);
 
 export const validateRegisterInput = withValidationErrors([
-  body("name").notEmpty().withMessage("name is required"),
+  body("name")
+    .notEmpty()
+    .withMessage("name is required")
+    .matches(/^[\p{L}\s]+$/u)
+    .withMessage("name must contain only letters"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -171,8 +183,8 @@ export const validateRegisterInput = withValidationErrors([
   body("lastName")
     .notEmpty()
     .withMessage("lastName is required")
-    .matches(/^9\d{8}$/)
-    .withMessage("Phone number must be exactly 9 digits long and start with 9"),
+    .matches(/^[\p{L}\s]+$/u)
+    .withMessage("last name must contain only letters"),
 ]);
 
 export const validateUserLoginInput = withValidationErrors([
@@ -207,7 +219,11 @@ export const validateAdminLoginInput = withValidationErrors([
 ]);
 
 export const validateUpdateUserInput = withValidationErrors([
-  body("name").notEmpty().withMessage("name is required"),
+  body("name")
+    .notEmpty()
+    .withMessage("name is required")
+    .matches(/^[\p{L}\s]+$/u)
+    .withMessage("Pharmacist name must contain only letters"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -219,7 +235,11 @@ export const validateUpdateUserInput = withValidationErrors([
         throw new Error("email already exists");
       }
     }),
-  body("lastName").notEmpty().withMessage("last name is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .matches(/^[\p{L}\s]+$/u)
+    .withMessage("last name must contain only letters"),
   body("phone")
     .notEmpty()
     .withMessage("phone number is required")

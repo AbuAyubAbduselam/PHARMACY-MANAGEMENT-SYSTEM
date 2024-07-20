@@ -73,11 +73,27 @@ export const getAllDrugs = async (req, res) => {
   });
 
   const totalDrugs = await Drug.countDocuments(queryObject);
-  const numOfPages = Math.ceil(totalDrugs / limit);
 
-  res
-    .status(StatusCodes.OK)
-    .json({ totalDrugs, numOfPages, currentPage: page, drugs: allDrugs });
+  const availableDrugsQueryObject = {
+    ...queryObject,
+    expiryDate: { $gt: new Date() },
+    quantity: { $gt: 0 },
+  };
+
+  const totalAvailableDrugs = await Drug.countDocuments(
+    availableDrugsQueryObject
+  );
+  const numOfPages = Math.ceil(totalDrugs / limit);
+  const numOfPages2 = Math.ceil(totalAvailableDrugs / limit);
+
+  res.status(StatusCodes.OK).json({
+    totalDrugs,
+    numOfPages,
+    numOfPages2,
+    currentPage: page,
+    drugs: allDrugs,
+    totalAvailableDrugs,
+  });
 };
 //===============GET EXPIRED MEDICINE==================//
 export const getExpiredDrugs = async (req, res) => {
