@@ -13,4 +13,3 @@ export { default as Login } from "./Login";
 export { default as AdminLogin } from "./AdminLogin";
 export { default as Profile } from "./Profile";
 export { default as Stats } from "./Stats";
-export { default as ExpiredDrug } from "./ExpiredDrug";

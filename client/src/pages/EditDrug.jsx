@@ -1,7 +1,7 @@
 import { FormRow, FormRowSelect, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { useLoaderData, useParams } from "react-router-dom";
-import { DRUG_STATUS, SUPPLIER } from "../../../utils/constant";
+import { DRUG_STATUS, SUPPLIER } from "../../../server/utils/constant.js";
 import day from "dayjs";
 
 import { Form, redirect } from "react-router-dom";

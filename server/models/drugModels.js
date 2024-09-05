@@ -39,7 +39,6 @@ const DrugSchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       ref: "User",
     },
   },

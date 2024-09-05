@@ -1,7 +1,11 @@
 import { FormRow, FormRowSelect, SubmitBtn } from ".";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { Form, useSubmit, Link } from "react-router-dom";
-import { SUPPLIER, DRUG_STATUS, DRUG_SORT_BY } from "../../../utils/constant";
+import {
+  SUPPLIER,
+  DRUG_STATUS,
+  DRUG_SORT_BY,
+} from "../../../server/utils/constant";
 import { useAllDrugsContext } from "../pages/AllDrugs";
 import { useDashboardContext } from "../pages/DashboardLayout";
 

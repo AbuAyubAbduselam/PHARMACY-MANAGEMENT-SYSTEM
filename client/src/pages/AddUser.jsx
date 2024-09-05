@@ -1,7 +1,7 @@
 import { FormRow, SubmitBtn } from "../components";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { useOutletContext } from "react-router-dom";
-import { ROLE } from "../../../utils/constant";
+import { ROLE } from "../../../server/utils/constant.js";
 import { Form, redirect } from "react-router-dom";
 import FormRowSelect from "../components/FormSelect";
 import { toast } from "react-toastify";

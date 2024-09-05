@@ -1,15 +1,12 @@
 {
   "name": "jobify",
   "version": "1.0.0",
-  "description": "[Jobify](https://jobify.live/)",
+  "description": "job tracking app",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "setup-project": "npm i && cd client && npm i",
-    "build": "react-scripts build",
-    "server": "nodemon server",
-    "client": "cd client && npm run dev",
-    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

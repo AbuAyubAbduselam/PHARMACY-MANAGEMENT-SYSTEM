@@ -13,7 +13,6 @@ import {
   Profile,
   Admin,
   EditDrug,
-  ExpiredDrug,
   AddBill,
   EditBill,
   AllBills,
@@ -31,7 +30,6 @@ import { action as deleteDrugAction } from "./pages/DeleteDrug";
 import { loader as adminLoader } from "./pages/Admin";
 import { action as profileAction } from "./pages/Profile";
 import { loader as statsLoader } from "./pages/Stats";
-import { loader as expiredDrugLoader } from "./pages/ExpiredDrug";
 import { action as deleteBillLoader } from "./pages/DeleteBill";
 import { loader as editBillLoader } from "./pages/EditBill";
 import { loader as allBillsLoader } from "./pages/AllBills";
@@ -91,11 +89,7 @@ const router = createBrowserRouter([
             element: <AllDrugs />,
             loader: allDrugsLoader,
           },
-          {
-            path: "expired-drugs",
-            element: <ExpiredDrug />,
-            loader: expiredDrugLoader,
-          },
+
           {
             path: "add-bill",
             element: <AddBill />,
