@@ -1,6 +1,6 @@
 import axios from "axios";
 const customFetch = axios.create({
-  baseURL: "https://pharmacy-management-4omz.vercel.app/",
+  baseURL: "/api/v1",
 });
 
 export default customFetch;

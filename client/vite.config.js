@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://pharmacy-management-4omz.vercel.app/",
+        target: "http://localhost:5100/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
