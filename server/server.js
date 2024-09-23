@@ -57,12 +57,11 @@ app.use("*", (req, res) => {
 
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 5100;
+const port = process.env.PORT || 5500;
 
 try {
   await mongoose.connect(process.env.MONGO_URL);
-  const drugs = await Drug.create(all);
-  app.listen(5100, () => {
+  app.listen(5500, () => {
     console.log(`Server is running on PORT ${port}...`);
   });
 } catch (error) {
